@@ -93,6 +93,7 @@ function init(modules: {
     function getEdits(
       fileName: string,
       positionOrRange: number | ts.TextRange,
+      formatOptions: ts.FormatCodeSettings,
       preferences: ts.UserPreferences | undefined
     ) {
       const sourceFile = info.languageService
@@ -154,7 +155,12 @@ function init(modules: {
       preferences
     ) => {
       if (actionName === refactorName) {
-        const edits = getEdits(fileName, positionOrRange, preferences);
+        const edits = getEdits(
+          fileName,
+          positionOrRange,
+          formatOptions,
+          preferences
+        );
         if (edits !== undefined) {
           return { edits };
         }
