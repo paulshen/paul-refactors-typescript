@@ -1,4 +1,10 @@
 {
+  "name": "typescript-paul-refactors",
   "private": true,
-  "workspaces": ["typescript-extract-object-binding-type-literal-plugin"]
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
 }
