@@ -1,5 +1,6 @@
 {
   "name": "paul-refactors-typescript",
+	"private": true,
 	"displayName": "paul refactors TypeScript",
 	"description": "",
 	"version": "0.0.1",
