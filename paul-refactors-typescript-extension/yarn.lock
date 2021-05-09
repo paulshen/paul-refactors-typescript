@@ -1413,10 +1413,10 @@ type-fest@^0.8.1:
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.8.1.tgz"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
-typescript-extract-object-binding-type-literal-plugin@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/typescript-extract-object-binding-type-literal-plugin/-/typescript-extract-object-binding-type-literal-plugin-0.0.2.tgz#303cb4c9f86ff9b8d03beef008d9b28dde6f98e0"
-  integrity sha512-+aRVCAJdJg3i9uFwBynGDPEl/uw3+2xGw64VHBwcBMH3CmLA+TBG36rMGojtrrODRB5L/OnPg/7sp82v/d2FXQ==
+typescript-extract-object-binding-type-literal-plugin@0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/typescript-extract-object-binding-type-literal-plugin/-/typescript-extract-object-binding-type-literal-plugin-0.0.3.tgz#aa98aa37c7e99ba5a71aa58b1ba30473ae9af7b1"
+  integrity sha512-rv4NCi0via49HOqXpZ9n3o9I+ZD/HTtiim5KrnQb58wpINBJugZ/MvNFKdcX33BcaqNIcWiNhO9JZtr1d0Xhow==
 
 typescript@^4.1.3:
   version "4.2.4"
