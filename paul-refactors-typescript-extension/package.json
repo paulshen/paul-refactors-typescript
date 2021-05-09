@@ -4,7 +4,7 @@
 	"displayName": "paul refactors typescript",
 	"description": "",
 	"publisher": "paulshen",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
@@ -27,7 +27,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"dependencies": {
-		"typescript-extract-object-binding-type-literal-plugin": "^0.0.1"
+		"typescript-extract-object-binding-type-literal-plugin": "0.0.2"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
