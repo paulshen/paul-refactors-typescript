@@ -1,5 +1,5 @@
 {
-  "name": "typescript-extract-function-type-literal-ls-plugin",
+  "name": "typescript-extract-object-binding-type-literal-plugin",
   "version": "0.0.1",
   "main": "index.js",
   "devDependencies": {

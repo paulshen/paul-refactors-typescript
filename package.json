@@ -1,4 +1,4 @@
 {
   "private": true,
-  "workspaces": ["typescript-extract-function-type-literal-ls-plugin"]
+  "workspaces": ["typescript-extract-object-binding-type-literal-plugin"]
 }
