@@ -5,9 +5,9 @@
   "devDependencies": {
     "typescript": "^4.2.4"
   },
-	"scripts": {
+  "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "prepack": "yarn run compile"
-	}
+  }
 }
