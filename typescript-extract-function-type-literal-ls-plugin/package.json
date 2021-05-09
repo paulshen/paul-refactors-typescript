@@ -1,0 +1,8 @@
+{
+  "name": "typescript-extract-function-type-literal-ls-plugin",
+  "version": "0.0.1",
+  "main": "index.js",
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
