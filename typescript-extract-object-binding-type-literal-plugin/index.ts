@@ -90,69 +90,80 @@ function init(modules: {
       return refactors;
     };
 
+    function getEdits(
+      fileName: string,
+      positionOrRange: number | ts.TextRange,
+      preferences: ts.UserPreferences | undefined
+    ) {
+      const sourceFile = info.languageService
+        .getProgram()
+        ?.getSourceFile(fileName);
+      const nodes = getTypeLiteralNodeAndObjectBindingPattern(
+        sourceFile,
+        positionOrRange
+      );
+      if (nodes === undefined) {
+        return;
+      }
+      const [typeLiteralNode, parameterObjectBindingNode] = nodes;
+      const nodeFactory = ts.factory;
+      const bindingElements = [];
+      for (let i = 0; i < typeLiteralNode.members.length; i++) {
+        const member = typeLiteralNode.members[i];
+        if (member.name === undefined || !ts.isIdentifier(member.name)) {
+          return;
+        }
+        bindingElements.push(
+          nodeFactory.createBindingElement(
+            undefined,
+            undefined,
+            member.name.getText()
+          )
+        );
+      }
+      const newObjectBindingPattern = nodeFactory.createObjectBindingPattern(
+        bindingElements
+      );
+      // @ts-ignore
+      const edits = ts["textChanges"].ChangeTracker.with(
+        {
+          host: info.languageServiceHost,
+          // @ts-ignore
+          formatContext: ts["formatting"].getFormatContext(formatOptions),
+          preferences: preferences,
+        },
+        // @ts-ignore
+        (tracker) => {
+          tracker.replaceNode(
+            sourceFile,
+            parameterObjectBindingNode,
+            newObjectBindingPattern,
+            undefined
+          );
+        }
+      );
+      return edits;
+    }
+
     proxy.getEditsForRefactor = (
       fileName,
       formatOptions,
       positionOrRange,
-      refactorName,
+      refactorNameArgument,
       actionName,
       preferences
     ) => {
       if (actionName === refactorName) {
-        const sourceFile = info.languageService
-          .getProgram()
-          ?.getSourceFile(fileName);
-        const nodes = getTypeLiteralNodeAndObjectBindingPattern(
-          sourceFile,
-          positionOrRange
-        );
-        if (nodes === undefined) {
-          return;
+        const edits = getEdits(fileName, positionOrRange, preferences);
+        if (edits !== undefined) {
+          return { edits };
         }
-        const [typeLiteralNode, parameterObjectBindingNode] = nodes;
-        const nodeFactory = ts.factory;
-        const bindingElements = [];
-        for (let i = 0; i < typeLiteralNode.members.length; i++) {
-          const member = typeLiteralNode.members[i];
-          if (member.name === undefined || !ts.isIdentifier(member.name)) {
-            return;
-          }
-          bindingElements.push(
-            nodeFactory.createBindingElement(
-              undefined,
-              undefined,
-              member.name.getText()
-            )
-          );
-        }
-        const newObjectBindingPattern = nodeFactory.createObjectBindingPattern(
-          bindingElements
-        );
-        // @ts-ignore
-        const edits = ts["textChanges"].ChangeTracker.with(
-          {
-            host: info.languageServiceHost,
-            // @ts-ignore
-            formatContext: ts["formatting"].getFormatContext(formatOptions),
-            preferences: preferences,
-          },
-          // @ts-ignore
-          (tracker) => {
-            tracker.replaceNode(
-              sourceFile,
-              parameterObjectBindingNode,
-              newObjectBindingPattern,
-              undefined
-            );
-          }
-        );
-        return { edits };
       }
       return info.languageService.getEditsForRefactor(
         fileName,
         formatOptions,
         positionOrRange,
-        refactorName,
+        refactorNameArgument,
         actionName,
         preferences
       );
