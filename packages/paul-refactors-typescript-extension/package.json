@@ -1,8 +1,9 @@
 {
 	"name": "paul-refactors-typescript",
 	"private": true,
-	"displayName": "paul refactors TypeScript",
+	"displayName": "paul refactors typescript",
 	"description": "",
+	"publisher": "paulshen",
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.56.0"
@@ -19,7 +20,6 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "yarn run compile",
 		"compile": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
 		"pretest": "yarn run compile && yarn run lint",
