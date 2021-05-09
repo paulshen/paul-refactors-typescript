@@ -4,6 +4,7 @@ const refactorDescription = "Extract object binding type literal properties";
 const extractFunctionTypeLiteralAction = {
   name: refactorName,
   description: refactorDescription,
+  kind: "refactor.extract.object-type-literal",
 };
 
 function init(modules: {

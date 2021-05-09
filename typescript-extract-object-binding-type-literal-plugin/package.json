@@ -1,6 +1,6 @@
 {
   "name": "typescript-extract-object-binding-type-literal-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "index.js",
   "devDependencies": {
     "typescript": "^4.2.4"
