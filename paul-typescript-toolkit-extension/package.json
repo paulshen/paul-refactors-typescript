@@ -3,9 +3,13 @@
 	"displayName": "Paul's TypeScript Toolkit",
 	"description": "",
 	"publisher": "paulshen",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.56.0"
+	},
+	"repository": {
+		"type": "git",
+    "url": "https://github.com/paulshen/paul-refactors-typescript.git"
 	},
 	"categories": [
 		"Other"
@@ -26,7 +30,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"dependencies": {
-		"typescript-extract-object-binding-type-literal-plugin": "0.0.4"
+		"typescript-extract-object-binding-type-literal-plugin": "0.0.5"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
