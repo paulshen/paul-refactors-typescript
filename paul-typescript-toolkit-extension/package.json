@@ -3,7 +3,7 @@
 	"displayName": "Paul's TypeScript Toolkit",
 	"description": "",
 	"publisher": "paulshen",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
@@ -30,7 +30,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"dependencies": {
-		"typescript-extract-object-binding-type-literal-plugin": "0.0.5"
+		"typescript-extract-object-binding-type-literal-plugin": "0.0.6"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",
