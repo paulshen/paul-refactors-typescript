@@ -6,7 +6,7 @@ VSCode extension with a collection of React and TypeScript utilities
 
 - TypeScript refactor: Extract type literal properties to object binding pattern.
 
-![Example recording](example.gif)
+![Example recording](https://raw.githubusercontent.com/paulshen/paul-refactors-typescript/main/paul-typescript-toolkit-extension/example.gif)
 
 ## Installation
 
