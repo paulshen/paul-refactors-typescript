@@ -24,7 +24,7 @@ function init(modules: {
     function getTypeLiteralNodeAndObjectBindingPattern(
       sourceFile: ts.SourceFile | undefined,
       positionOrRange: number | ts.TextRange
-    ): [ts.TypeLiteralNode, ts.ObjectBindingPattern] | undefined {
+    ): [ts.ObjectBindingPattern, ts.TypeLiteralNode] | undefined {
       if (sourceFile === undefined || sourceFile.isDeclarationFile) {
         return;
       }
@@ -36,25 +36,21 @@ function init(modules: {
       if (node === undefined) {
         return;
       }
-      let typeLiteralNode: ts.TypeLiteralNode | undefined;
-      while (!ts.isTypeLiteralNode(node)) {
-        node = node?.parent;
-        if (node === undefined) {
-          return;
+      while (node !== undefined) {
+        // prettier-ignore
+        if (
+          // @ts-ignore
+          ts.isObjectBindingPattern(node.name) &&
+          // @ts-ignore
+          ts.isTypeLiteralNode(node.type)
+        ) {
+          // @ts-ignore
+          return [node.name, node.type];
         }
+
+        node = node.parent;
       }
-      typeLiteralNode = node;
-      if (
-        !ts.isParameter(node.parent) &&
-        !ts.isVariableDeclaration(node.parent)
-      ) {
-        return;
-      }
-      const declarationNode = node.parent;
-      if (!ts.isObjectBindingPattern(declarationNode.name)) {
-        return;
-      }
-      return [typeLiteralNode, declarationNode.name];
+      return undefined;
     }
 
     proxy.getApplicableRefactors = function (
@@ -106,7 +102,7 @@ function init(modules: {
       if (nodes === undefined) {
         return;
       }
-      const [typeLiteralNode, parameterObjectBindingNode] = nodes;
+      const [objectBindingNode, typeLiteralNode] = nodes;
       const nodeFactory = ts.factory;
       const bindingElements = [];
       for (let i = 0; i < typeLiteralNode.members.length; i++) {
@@ -122,9 +118,8 @@ function init(modules: {
           )
         );
       }
-      const newObjectBindingPattern = nodeFactory.createObjectBindingPattern(
-        bindingElements
-      );
+      const newObjectBindingPattern =
+        nodeFactory.createObjectBindingPattern(bindingElements);
       // @ts-ignore
       const edits = ts["textChanges"].ChangeTracker.with(
         {
@@ -137,7 +132,7 @@ function init(modules: {
         (tracker) => {
           tracker.replaceNode(
             sourceFile,
-            parameterObjectBindingNode,
+            objectBindingNode,
             newObjectBindingPattern,
             undefined
           );
