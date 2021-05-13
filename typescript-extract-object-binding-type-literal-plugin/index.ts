@@ -21,6 +21,8 @@ function init(modules: {
       proxy[k] = (...args: Array<{}>) => x!.apply(info.languageService, args);
     }
 
+    function f({}: { x: number; y: string }) {}
+
     function getTypeLiteralNodeAndObjectBindingPattern(
       sourceFile: ts.SourceFile | undefined,
       positionOrRange: number | ts.TextRange
@@ -33,12 +35,12 @@ function init(modules: {
           ? positionOrRange
           : positionOrRange.pos;
       let node = getNodeAtPosition(sourceFile, position);
-      if (node === undefined) {
-        return;
-      }
       while (node !== undefined) {
-        // prettier-ignore
         if (
+          // @ts-ignore
+          node.name !== undefined &&
+          // @ts-ignore
+          node.type !== undefined &&
           // @ts-ignore
           ts.isObjectBindingPattern(node.name) &&
           // @ts-ignore
