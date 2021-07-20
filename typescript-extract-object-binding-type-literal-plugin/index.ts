@@ -21,8 +21,6 @@ function init(modules: {
       proxy[k] = (...args: Array<{}>) => x!.apply(info.languageService, args);
     }
 
-    function f({}: { x: number; y: string }) {}
-
     function getTypeLiteralNodeAndObjectBindingPattern(
       sourceFile: ts.SourceFile | undefined,
       positionOrRange: number | ts.TextRange
