@@ -3,7 +3,7 @@
 	"displayName": "Paul's TypeScript Toolkit",
 	"description": "",
 	"publisher": "paulshen",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
@@ -19,6 +19,10 @@
 			{
 				"name": "typescript-extract-object-binding-type-literal-plugin",
 				"enableForWorkspaceTypeScriptVersions": true
+			},
+			{
+				"name": "typescript-react-utils-plugin",
+				"enableForWorkspaceTypeScriptVersions": true
 			}
 		]
 	},
@@ -30,7 +34,8 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"dependencies": {
-		"typescript-extract-object-binding-type-literal-plugin": "0.0.6"
+		"typescript-extract-object-binding-type-literal-plugin": "0.0.6",
+		"typescript-react-utils-plugin": "0.0.1"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.3",

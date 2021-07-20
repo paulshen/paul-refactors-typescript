@@ -8,6 +8,13 @@ VSCode extension with a collection of React and TypeScript utilities
 
 ![Example recording](https://raw.githubusercontent.com/paulshen/paul-refactors-typescript/main/paul-typescript-toolkit-extension/example.gif)
 
+- Convert JSX className string literal to expression
+
+```jsx
+// from: <div className="my-class">
+<div className={classNames("my-class")}>
+```
+
 ## Installation
 
 Get the extension on the Marketplace.
